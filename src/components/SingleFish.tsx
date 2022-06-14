@@ -65,7 +65,7 @@ export const SingleFish = ({
         }px, 0) scaleX(${fish.momentum.x > 0 ? "1" : "-1"})`;
       }
     },
-    [arenaHeight, arenaWidth, canRandomlyChangeDirection]
+    [arenaHeight, arenaWidth]
   );
 
   const randomlyChangeDirection = () => {
