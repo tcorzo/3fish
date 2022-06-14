@@ -5,7 +5,7 @@ import { ImageProtector } from "./components/ImageProtector";
 import { BorderDetails } from "./components/BorderDetails";
 import "./App.css";
 import { VolumeIndicator } from "./components/VolumeIndicator";
-import { SingleFish } from "./components/SingleFish";
+import { FishTank } from "./components/FishTank";
 
 function App() {
   const [isMuted, setIsMuted] = useState(false);
@@ -189,37 +189,27 @@ function App() {
           }}
         >
           <ImageProtector />
-
-          <img style={commonStyles.image} alt="fish bg" src="/fish_bg.png" />
-          <SingleFish
-            fishAttributes={{
-              assetUrl: "/fish_1.png",
-              width: 214,
-              height: 116,
-              speed: { x: 0.2, y: 0.2 },
-            }}
-            arenaWidth={504}
-            arenaHeight={336}
-          />
-          <SingleFish
-            fishAttributes={{
-              assetUrl: "/fish_2.png",
-              width: 146,
-              height: 74,
-              speed: { x: 0.3, y: 0.15 },
-            }}
-            arenaWidth={504}
-            arenaHeight={336}
-          />
-          <SingleFish
-            fishAttributes={{
-              assetUrl: "/fish_2.png",
-              width: 144,
-              height: 62,
-              speed: { x: 0.32, y: 0.18 },
-            }}
-            arenaWidth={504}
-            arenaHeight={336}
+          <FishTank
+            fishes={[
+              {
+                assetUrl: "/fish_1.png",
+                width: 214,
+                height: 116,
+                speed: { x: 0.05, y: 0.04 },
+              },
+              {
+                assetUrl: "/fish_2.png",
+                width: 146,
+                height: 74,
+                speed: { x: 0.07, y: 0.04 },
+              },
+              {
+                assetUrl: "/fish_3.png",
+                width: 144,
+                height: 62,
+                speed: { x: 0.074, y: 0.04 },
+              },
+            ]}
           />
         </div>
       </div>
