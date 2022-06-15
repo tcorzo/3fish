@@ -1,20 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: "MS Sans Serif";
-  src: URL("/public/MS Sans Serif.ttf") format("truetype");
+  src: URL("/public/fonts/MS Sans Serif.ttf") format("truetype");
 }
 
+html,
 body {
-  user-select: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   margin: 0;
   padding: 0;
+  overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @apply select-none;
+}
+
+img {
+  image-rendering: pixelated;
+}
+
+button {
+  @apply cursor-pointer;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: "MS Sans Serif", source-code-pro, Menlo, Monaco, Consolas,
+    "Courier New", monospace;
+}
+
+.flex-container {
+  @apply relative flex items-center justify-center;
+}
+
+.border-corner {
+  @apply h-[46px] w-[46px] absolute border-2 border-black border-solid box-border;
 }

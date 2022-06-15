@@ -1,23 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Fish, FishAttributes, Vector } from "../types/fish_types";
 
 const FPS = 24;
 const INTERVAL = 1000 / FPS;
-
-type Vector = { x: number; y: number };
-
-interface FishAttributes {
-  assetUrl: string;
-  speed: Vector;
-  height: number;
-  width: number;
-}
-
-interface Fish extends FishAttributes {
-  position: Vector;
-  direction: Vector;
-  ref: HTMLDivElement | null;
-  refImg: HTMLImageElement | null;
-}
 
 const getRandomSign = (): 1 | -1 => (Math.round(Math.random()) ? 1 : -1);
 const getRandomBetween = (min: number, max: number): number =>
@@ -133,7 +118,7 @@ export const FishTank = ({
           />
         </div>
       ))}
-      <img src="/fish_bg.png" alt="bg" />
+      <img src="/fish_assets/fish_bg.png" alt="bg" />
     </div>
   );
 };
