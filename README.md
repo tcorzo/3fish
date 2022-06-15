@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+# Real 3fish.exe Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app is based off of this [popular tumblr post](https://ulan-bator.tumblr.com/post/155154594365).
 
-## Available Scripts
+![original](https://user-images.githubusercontent.com/40501327/173753697-c2f942fe-5052-4bb6-9d98-7826f2e5daca.gif)
 
-In the project directory, you can run:
+My wife really liked it so I took it as an opportunity to try out [tauri](https://github.com/tauri-apps/tauri). I tried to make it as accurate as possible, as well as provide actual functionality. Heres a screenshot of the app now:
 
-### `yarn start`
+![CleanShot 2022-06-15 at 03 05 42](https://user-images.githubusercontent.com/40501327/173754335-1ece7340-edd6-436e-a930-9d50c8f30688.gif)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The main differences exist on the titlebar. I replaced the two buttons on the right for a mute and close button. There's currently a useless settings button on the left which will open up more options for the user to take advantage of.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The application currently loops three songs found in this [youtube video](https://www.youtube.com/watch?v=6magIq2zgIM), there will be more settings later for scrubbing through or looping a specific song.
 
-### `yarn test`
+You can change the volume with the mouse wheel.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Releases
 
-### `yarn build`
+Check out the [releases](https://github.com/snoozed-dev/3fish/releases) to download an unsigned build for your system (i aint paying hundreds for code signing).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Running locally
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Follow steps on the [tauri prequisites](https://tauri.studio/v1/guides/getting-started/prerequisites) documentation to get your environment ready.
+2. `$ git clone git@github.com:snoozed-dev/3fish.git`
+3. `$ cd ./3fish`
+4. `$ yarn && yarn tauri dev`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Building
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+I currently use the handy [github actions](https://github.com/tauri-apps/tauri-action) provided by [tauri](https://github.com/tauri-apps).
