@@ -1,4 +1,4 @@
-import { WinButtonDecorations } from "./WinButtonDecorations";
+import React from "react";
 
 export const TitlebarButton = ({
   onClick,
@@ -6,7 +6,7 @@ export const TitlebarButton = ({
 }: {
   onClick: () => unknown;
   imageFilename: string;
-}) => {
+}): React.ReactElement => {
   return (
     <button
       className="row-span-1 col-span-1 flex-container  old-button"

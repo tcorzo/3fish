@@ -1,6 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AudioContextReact } from "../context/audio_context";
-import { WinButtonDecorations } from "./WinButtonDecorations";
 
 const volumeSegments = 36;
 
@@ -34,12 +33,8 @@ export const VolumeIndicator = (): React.ReactElement => {
         .map((_, i) => (
           <div
             key={i}
-            style={{
-              height: "100%",
-              width: `calc(100% / ${volumeSegments} - 2px)`,
-              margin: "0px 1px",
-              backgroundColor: "#000082",
-            }}
+            style={{ width: `calc(100% / ${volumeSegments} - 2px)` }}
+            className="h-full mx-[1px] bg-blue"
           />
         ))}
     </div>

@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { BorderDetails } from "../components/BorderDetails";
 import { VolumeIndicator } from "../components/VolumeIndicator";
-import { TitleBar } from "../components/TitleBar";
 import { FishTankContainer } from "../components/FishTankContainer";
 import { useVolumeWheel } from "../hooks/useVolumeWheel";
 import { AudioContextReact } from "../context/audio_context";
 import { useKeypresses } from "../hooks/useKeypresses";
-import { TitlebarButton } from "./TitlebarButton";
+import { TitlebarButton } from "../components/TitlebarButton";
 import { appWindow, WebviewWindow } from "@tauri-apps/api/window";
+import { Titlebar } from "../components/Titlebar";
 
 export const Home = (): React.ReactElement => {
   const { state, actions } = useContext(AudioContextReact);
@@ -16,7 +16,8 @@ export const Home = (): React.ReactElement => {
   useVolumeWheel();
   useKeypresses({
     actionKeymap: {
-      KeyM: actions.toggleMute,
+      Escape: () => appWindow.close(),
+      KeyM: () => actions.toggleMute(),
       KeyR: () => window.location.reload(),
     },
   });
@@ -33,10 +34,16 @@ export const Home = (): React.ReactElement => {
         <TitlebarButton
           imageFilename="settings"
           onClick={() =>
-            new WebviewWindow("settings", { url: "https://dolar.snoozed.dev/" })
+            new WebviewWindow("settings", {
+              url: "/settings",
+              focus: true,
+              title: "Settings...",
+              decorations: false,
+              resizable: false,
+            })
           }
         />
-        <TitleBar />
+        <Titlebar />
         <TitlebarButton
           imageFilename={isMuted ? "mute" : "volume"}
           onClick={() => actions.toggleMute()}

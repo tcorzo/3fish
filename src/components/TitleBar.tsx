@@ -1,6 +1,6 @@
 import React from "react";
 
-export const TitleBar = (): React.ReactElement => (
+export const Titlebar = (): React.ReactElement => (
   <div className="row-span-1 col-span-1 bg-blue flex-container">
     <img
       className="absolute bottom-[2px]"

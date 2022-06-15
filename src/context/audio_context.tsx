@@ -25,7 +25,7 @@ interface AudioContext {
 
 const audioDefaultContextState: AudioContextState = {
   queue: ["GYMN_1_.ROL", "GYMN_2_.ROL", "GYMN_3_.ROL"],
-  isMuted: process.env.NODE_ENV === "development",
+  isMuted: process.env.REACT_APP_STAGE === "development",
   progress: 0,
   volume: 0.6,
   currentBehaviour: "loop_queue",
@@ -56,6 +56,11 @@ export const AudioContextProvider = ({ children }: { children: ReactNode }) => {
 
   const changeSong = (song: Song) => {};
 
+  const moveProgress = (newProgress: number) => {
+    if (!audioRef.current) return;
+    audioRef.current.currentTime = audioRef.current.duration * newProgress;
+  };
+
   const updateVolume = (newValue: number) => {
     const clampedValue =
       Math.round(Math.min(Math.max(newValue, 0), 1) * 10) / 10;
@@ -75,6 +80,18 @@ export const AudioContextProvider = ({ children }: { children: ReactNode }) => {
           return {
             ...oldState,
             queue: [...restOfQueue, finishedSong],
+          };
+        });
+        break;
+      case "loop_single":
+        moveProgress(0);
+        break;
+      case "play_queue":
+        setState((oldState) => {
+          const [_, ...restOfQueue] = oldState.queue;
+          return {
+            ...oldState,
+            queue: [...restOfQueue],
           };
         });
         break;
