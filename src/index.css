@@ -25,12 +25,14 @@ body {
   @apply select-none;
 }
 
-img {
-  image-rendering: pixelated;
+*::selection {
+  background: transparent;
 }
 
+img,
 button {
-  @apply cursor-pointer;
+  image-rendering: pixelated;
+  @apply select-none;
 }
 
 code {

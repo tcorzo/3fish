@@ -25,7 +25,7 @@ interface AudioContext {
 
 const audioDefaultContextState: AudioContextState = {
   queue: ["GYMN_1_.ROL", "GYMN_2_.ROL", "GYMN_3_.ROL"],
-  isMuted: false,
+  isMuted: process.env.NODE_ENV === "development",
   progress: 0,
   volume: 0.6,
   currentBehaviour: "loop_queue",

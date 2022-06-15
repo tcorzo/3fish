@@ -12,8 +12,23 @@ export const TitlebarButton = ({
       className="row-span-1 col-span-1 bg-grey flex-container"
       onClick={onClick}
     >
-      <img alt={imageFilename} src={`/images/${imageFilename}.png`} />
+      <ProtectedImage
+        alt={imageFilename}
+        src={`/images/${imageFilename}.png`}
+      />
       <WinButtonDecorations />
     </button>
   );
 };
+
+type ProtectedImageProps = React.DetailedHTMLProps<
+  React.ImgHTMLAttributes<HTMLImageElement>,
+  HTMLImageElement
+>;
+
+const ProtectedImage = (props: ProtectedImageProps): React.ReactElement => (
+  <>
+    <img alt="no-alt" {...props} />
+    <div className="h-full w-full absolute z-30" />
+  </>
+);

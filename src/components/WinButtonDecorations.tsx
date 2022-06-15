@@ -6,6 +6,7 @@ export const WinButtonDecorations = ({
   thin?: boolean;
 }): React.ReactElement => (
   <>
+    {/* <div className="flex-1 self-stretch absolute bg-black z-30" /> */}
     <div className="bg-white h-[2px] absolute top-0 left-0 right-[2px] z-20" />
     <div className="bg-white w-[2px] absolute top-0 left-0 bottom-[2px] z-20" />
     <div

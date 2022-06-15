@@ -7,7 +7,7 @@ import { useVolumeWheel } from "../hooks/useVolumeWheel";
 import { AudioContextReact } from "../context/audio_context";
 import { useKeypresses } from "../hooks/useKeypresses";
 import { TitlebarButton } from "./TitlebarButton";
-import { appWindow } from "@tauri-apps/api/window";
+import { appWindow, WebviewWindow } from "@tauri-apps/api/window";
 
 export const Home = (): React.ReactElement => {
   const { state, actions } = useContext(AudioContextReact);
@@ -30,7 +30,12 @@ export const Home = (): React.ReactElement => {
           imageFilename="minimize"
           onClick={() => appWindow.minimize()}
         />
-        <TitlebarButton imageFilename="settings" onClick={() => 0} />
+        <TitlebarButton
+          imageFilename="settings"
+          onClick={() =>
+            new WebviewWindow("settings", { url: "https://dolar.snoozed.dev/" })
+          }
+        />
         <TitleBar />
         <TitlebarButton
           imageFilename={isMuted ? "mute" : "volume"}
