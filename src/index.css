@@ -22,17 +22,33 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply select-none;
 }
 
 *::selection {
   background: transparent;
 }
 
+* {
+  cursor: url("/public/cursors/cursor.cur"), auto;
+  @apply select-none;
+}
+
 img,
 button {
   image-rendering: pixelated;
   @apply select-none;
+}
+
+.old-button {
+  @apply bg-grey;
+  box-shadow: theme("colors.white") 2px 2px 0px 0px inset,
+    theme("colors.dark-grey") -2px -2px 0px 0px inset;
+}
+
+.old-button:active {
+  @apply bg-dark-grey;
+  box-shadow: theme("colors.white") -2px -2px 0px 0px inset,
+    theme("colors.black") 2px 2px 0px 0px inset;
 }
 
 code {

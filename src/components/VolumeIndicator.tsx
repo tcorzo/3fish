@@ -2,6 +2,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { AudioContextReact } from "../context/audio_context";
 import { WinButtonDecorations } from "./WinButtonDecorations";
 
+const volumeSegments = 36;
+
 export const VolumeIndicator = (): React.ReactElement => {
   const { state } = useContext(AudioContextReact);
   const [isVolumeVisible, setVolumeVisible] = useState(false);
@@ -24,34 +26,22 @@ export const VolumeIndicator = (): React.ReactElement => {
 
   return (
     <div
-      style={{
-        position: "absolute",
-        transition: "200ms ease-in-out",
-        backgroundColor: "#c3c3c3",
-        opacity: isVolumeVisible ? 1 : 0,
-        border: "2px solid black",
-        height: 32,
-        bottom: 18,
-        left: 18,
-        right: 18,
-        zIndex: 2,
-        padding: 4,
-        display: "flex",
-        flexDirection: "row",
-      }}
+      style={{ opacity: isVolumeVisible ? 1 : 0 }}
+      className="p-[4px] transition-opacity old-button flex flex-row absolute bg-grey border-black border-2 border-solid h-[32px] bottom-[18px] left-[18px] right-[18px] z-10"
     >
-      <WinButtonDecorations thin />
-      {new Array(Math.floor(state.volume * 20)).fill(0).map((_, i) => (
-        <div
-          key={i}
-          style={{
-            height: "100%",
-            width: "calc(5% - 4px)",
-            margin: "0px 2px",
-            backgroundColor: "#000082",
-          }}
-        />
-      ))}
+      {new Array(Math.floor(state.volume * volumeSegments))
+        .fill(0)
+        .map((_, i) => (
+          <div
+            key={i}
+            style={{
+              height: "100%",
+              width: `calc(100% / ${volumeSegments} - 2px)`,
+              margin: "0px 1px",
+              backgroundColor: "#000082",
+            }}
+          />
+        ))}
     </div>
   );
 };

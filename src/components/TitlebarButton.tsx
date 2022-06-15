@@ -9,14 +9,14 @@ export const TitlebarButton = ({
 }) => {
   return (
     <button
-      className="row-span-1 col-span-1 bg-grey flex-container"
+      className="row-span-1 col-span-1 flex-container  old-button"
       onClick={onClick}
     >
       <ProtectedImage
         alt={imageFilename}
         src={`/images/${imageFilename}.png`}
       />
-      <WinButtonDecorations />
+      {/* <WinButtonDecorations /> */}
     </button>
   );
 };
