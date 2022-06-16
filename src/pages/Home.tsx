@@ -7,7 +7,7 @@ import { AudioContextReact } from "../context/audio_context";
 import { useKeypresses } from "../hooks/useKeypresses";
 import { TitlebarButton } from "../components/TitlebarButton";
 import { appWindow, WebviewWindow } from "@tauri-apps/api/window";
-import { Titlebar } from "../components/Titlebar";
+import { TitleBar } from "../components/TitleBar";
 
 export const Home = (): React.ReactElement => {
   const { state, actions } = useContext(AudioContextReact);
@@ -43,7 +43,7 @@ export const Home = (): React.ReactElement => {
             })
           }
         />
-        <Titlebar />
+        <TitleBar />
         <TitlebarButton
           imageFilename={isMuted ? "mute" : "volume"}
           onClick={() => actions.toggleMute()}
