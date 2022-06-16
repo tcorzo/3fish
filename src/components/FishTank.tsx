@@ -76,7 +76,7 @@ export const FishTank = ({
       });
     };
 
-    const render: FrameRequestCallback = (time) => {
+    const render: FrameRequestCallback = (_time) => {
       renderRef.current = requestAnimationFrame(render);
       now.current = Date.now();
       delta.current = now.current - then.current;

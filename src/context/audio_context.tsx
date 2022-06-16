@@ -1,14 +1,14 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 
 type Song = "GYMN_1_.ROL" | "GYMN_2_.ROL" | "GYMN_3_.ROL";
-type Behaviour = "loop_queue" | "loop_single" | "play_queue";
+type Behavior = "loop_queue" | "loop_single" | "play_queue";
 
 interface AudioContextState {
   volume: number;
   isMuted: boolean;
   progress: number;
   paused: boolean;
-  currentBehaviour: Behaviour;
+  currentBehavior: Behavior;
   queue: Song[];
 }
 
@@ -28,7 +28,7 @@ const audioDefaultContextState: AudioContextState = {
   isMuted: process.env.REACT_APP_STAGE === "development",
   progress: 0,
   volume: 0.6,
-  currentBehaviour: "loop_queue",
+  currentBehavior: "loop_queue",
   paused: false,
 };
 
@@ -54,7 +54,7 @@ export const AudioContextProvider = ({ children }: { children: ReactNode }) => {
     else setState((oldState) => ({ ...oldState, isMuted: !oldState.isMuted }));
   };
 
-  const changeSong = (song: Song) => {};
+  const changeSong = (_song: Song) => 0;
 
   const moveProgress = (newProgress: number) => {
     if (!audioRef.current) return;
@@ -73,7 +73,7 @@ export const AudioContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const onSongEnd = () => {
-    switch (state.currentBehaviour) {
+    switch (state.currentBehavior) {
       case "loop_queue":
         setState((oldState) => {
           const [finishedSong, ...restOfQueue] = oldState.queue;
@@ -88,7 +88,7 @@ export const AudioContextProvider = ({ children }: { children: ReactNode }) => {
         break;
       case "play_queue":
         setState((oldState) => {
-          const [_, ...restOfQueue] = oldState.queue;
+          const [, ...restOfQueue] = oldState.queue;
           return {
             ...oldState,
             queue: [...restOfQueue],

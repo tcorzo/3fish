@@ -20,6 +20,7 @@
   },
   "scripts": {
     "start": "cross-env BROWSER=none react-scripts start",
+    "lint": "eslint --fix --ext .ts,.tsx src",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -45,8 +46,12 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.0.0-rc.14",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
     "autoprefixer": "^10.4.7",
     "cross-env": "^7.0.3",
+    "eslint": "^8.17.0",
+    "eslint-plugin-react": "^7.30.0",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.3"
   }

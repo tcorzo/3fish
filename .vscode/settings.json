@@ -1,0 +1,10 @@
+{
+  "eslint.format.enable": true,
+  "eslint.packageManager": "yarn",
+  "[typescriptreact][typescript][json][markdown]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": ["source.sortImports", "source.fixAll.eslint"],
+  "typescript.preferences.importModuleSpecifier": "relative"
+}

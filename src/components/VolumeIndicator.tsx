@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AudioContextReact } from "../context/audio_context";
 
 const volumeSegments = 36;
