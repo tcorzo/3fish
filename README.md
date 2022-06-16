@@ -6,11 +6,13 @@ This app is based off of this [popular tumblr post](https://ulan-bator.tumblr.co
 
 My wife really liked it so I took it as an opportunity to try out [tauri](https://github.com/tauri-apps/tauri). I attempted to make it as accurate as possible, as well as provide actual functionality. Heres a screenshot of the app now:
 
-![CleanShot 2022-06-15 at 03 05 42](https://user-images.githubusercontent.com/40501327/173754335-1ece7340-edd6-436e-a930-9d50c8f30688.gif)
+![CleanShot 2022-06-16 at 17 52 12](https://user-images.githubusercontent.com/40501327/174161624-48bbfce1-2712-4b3d-b0db-857e48e7e9a4.png)
 
-The main differences can be found on the title bar. I replaced the two buttons on the right for a mute and close button. I've also added a settings button on the left for symmetry and to give the app more preference options.
+The scale of everything is 2x since it would be too small for modern displays.
 
-The application currently loops three songs found in this [youtube video](https://www.youtube.com/watch?v=6magIq2zgIM), there will be more settings later for scrubbing through or looping a specific song.
+The main differences can be found on the title bar since this window can't really be maximized by the button on the right as the background would look silly. I added some options to the left menu button aswell.
+
+The application loops three songs I found in this [youtube video](https://www.youtube.com/watch?v=6magIq2zgIM), there will be more settings later for scrubbing through or looping a specific song.
 
 You can change the volume with the mouse wheel.
 
