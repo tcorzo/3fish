@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { BorderDetails } from "../components/BorderDetails";
 import { FishTankContainer } from "../components/FishTankContainer";
 import { TitleBar } from "../components/TitleBar";
-import { ProtectedImage, TitleBarButton } from "../components/TitleBarButton";
+import { ProtectedImage, TitleBarButton } from "../components/TitlebarButton";
 import { VolumeIndicator } from "../components/VolumeIndicator";
 import { AudioContextReact } from "../context/audio_context";
 import { useKeypresses } from "../hooks/useKeypresses";
@@ -59,10 +59,10 @@ export const Home = (): React.ReactElement => {
                     ]
                   : []),
                 {
-                  text: "<u>Q</u>uit",
+                  text: "<u>C</u>lose",
                   separated: true,
                   onClick: appWindow.close,
-                  keyMap: "KeyQ",
+                  keyMap: "KeyC",
                 },
               ]}
             />
@@ -91,13 +91,6 @@ interface MenuItem {
 
 const Menu = ({ menuItems }: { menuItems: MenuItem[] }) => {
   const [menuVisible, setMenuVisible] = useState(true);
-
-  useKeypresses({
-    actionKeymap: {
-      Escape: () => appWindow.close(),
-      KeyR: () => window.location.reload(),
-    },
-  });
 
   return (
     <div className="relative">
@@ -168,7 +161,7 @@ const MenuItems = ({
   }, [menuItems]);
 
   return (
-    <div className="bg-white flex flex-col absolute z-50 translate-y-0 translate-x-0 border-2 border-black min-w-[220px]">
+    <div className="bg-white flex flex-col absolute z-50 translate-y-0 translate-x-0 border-2 border-black min-w-[260px]">
       {menuItems.map((item, i) => (
         <button key={i} className="group" onClick={() => onItemPress(i)}>
           <div
@@ -179,7 +172,7 @@ const MenuItems = ({
           >
             <span
               dangerouslySetInnerHTML={{ __html: item.text }}
-              className="font-system text-[200%] tracking-tight text-left group-hover:text-white"
+              className="font-system text-[200%] tracking-wide leading-9 text-left group-hover:text-white"
             />
           </div>
         </button>

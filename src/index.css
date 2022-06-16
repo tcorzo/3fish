@@ -9,6 +9,7 @@
 
 html,
 body {
+  text-underline-offset: 2px;
   position: absolute;
   top: 0;
   right: 0;
@@ -22,6 +23,11 @@ body {
 
 *::selection {
   background: transparent;
+}
+
+u {
+  letter-spacing: normal;
+  margin-right: 2px;
 }
 
 * {
