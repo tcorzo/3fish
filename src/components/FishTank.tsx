@@ -92,22 +92,10 @@ export const FishTank = ({
   }, [fishes]);
 
   return (
-    <div
-      style={{
-        height: arenaSize.y,
-        width: arenaSize.x,
-        backgroundColor: "red",
-        imageRendering: "pixelated",
-      }}
-    >
+    <div className="h-[336px] w-[504px]">
       {fishes.map((fish, i) => (
         <div
-          style={{
-            left: 0,
-            top: 0,
-            position: "absolute",
-            transition: `${INTERVAL}ms linear`,
-          }}
+          className={`left-0 top-0 absolute transition-[${INTERVAL}ms_linear]`}
           ref={(ref) => (fish.ref = ref)}
           key={i}
         >

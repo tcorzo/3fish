@@ -19,8 +19,6 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint"],
   rules: {
-    indent: ["error", 2, { SwitchCase: 1 }],
-    quotes: ["error", "double"],
     semi: ["error", "always"],
     "@typescript-eslint/no-unused-vars": [
       "error",

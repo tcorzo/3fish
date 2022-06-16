@@ -5,13 +5,15 @@ module.exports = {
     colors: {
       grey: "#c3c3c3",
       "dark-grey": "#828282",
+      "darker-grey": "#848a8c",
       black: "#000000",
       blue: "#000082",
       white: "#ffffff",
     },
+    fontFamily: { sans: ["MS Sans Serif"], system: ["System"] },
     extend: {
       gridTemplateColumns: {
-        titlebar: "repeat(2, 36px) 1fr repeat(2, 36px)",
+        titlebar: "36px 1fr 36px",
       },
       gridTemplateRows: {
         titlebar: "36px 1fr",

@@ -7,6 +7,7 @@ export const useKeypresses = ({
 }) => {
   const onKeypress = useCallback(
     (evt: KeyboardEvent) => {
+      console.log({ evt });
       const action = actionKeymap[evt.code];
       if (action) {
         evt.preventDefault();

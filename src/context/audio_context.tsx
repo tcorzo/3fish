@@ -1,4 +1,5 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
+import { isDebug } from "../utils/debug";
 
 type Song = "GYMN_1_.ROL" | "GYMN_2_.ROL" | "GYMN_3_.ROL";
 type Behavior = "loop_queue" | "loop_single" | "play_queue";
@@ -25,7 +26,7 @@ interface AudioContext {
 
 const audioDefaultContextState: AudioContextState = {
   queue: ["GYMN_1_.ROL", "GYMN_2_.ROL", "GYMN_3_.ROL"],
-  isMuted: process.env.REACT_APP_STAGE === "development",
+  isMuted: isDebug,
   progress: 0,
   volume: 0.6,
   currentBehavior: "loop_queue",

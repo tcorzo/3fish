@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "MS Sans Serif";
-  src: URL("/public/fonts/MS Sans Serif.ttf") format("truetype");
+  font-family: "System";
+  src: URL("/public/fonts/system.ttf") format("truetype");
 }
 
 html,
@@ -17,11 +17,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: none;
 }
 
 *::selection {
@@ -40,15 +36,25 @@ button {
 }
 
 .old-button {
-  @apply bg-grey;
-  box-shadow: theme("colors.white") 2px 2px 0px 0px inset,
-    theme("colors.dark-grey") -2px -2px 0px 0px inset;
+  @apply bg-grey h-[36px] w-[36px];
 }
 
-.old-button:active {
-  @apply bg-dark-grey;
-  box-shadow: theme("colors.white") -2px -2px 0px 0px inset,
-    theme("colors.black") 2px 2px 0px 0px inset;
+.old-button > .shine {
+  clip-path: path("M 0,0 L 0,34 L 2,34 L 2,2 L 34,2 L 34,0 Z");
+  @apply h-[36px] w-[36px] left-0 top-0 z-20 absolute bg-white;
+}
+
+.old-button > .shade {
+  clip-path: path("M 32,0 L 36,0 L 36,36 L 0,36 L 0,32 L 32,32 Z");
+  @apply h-[36px] w-[36px] left-0 top-0 z-10 absolute bg-dark-grey;
+}
+
+.old-button:active > .shine {
+  @apply bg-[transparent];
+}
+
+.old-button:active > .shade {
+  clip-path: path("M 0,0 L 0,36 L 2,36 L 2,2 L 36,2 L 36,0 Z");
 }
 
 code {
@@ -62,4 +68,8 @@ code {
 
 .border-corner {
   @apply h-[46px] w-[46px] absolute border-2 border-black border-solid box-border;
+}
+
+.flex-fit {
+  @apply flex-1 self-stretch;
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AudioContextReact } from "../context/audio_context";
 
-const volumeSegments = 36;
+const volumeSegments = 30;
 
 export const VolumeIndicator = (): React.ReactElement => {
   const { state } = useContext(AudioContextReact);
@@ -26,17 +26,28 @@ export const VolumeIndicator = (): React.ReactElement => {
   return (
     <div
       style={{ opacity: isVolumeVisible ? 1 : 0 }}
-      className="p-[4px] transition-opacity old-button flex flex-row absolute bg-grey border-black border-2 border-solid h-[32px] bottom-[18px] left-[18px] right-[18px] z-10"
+      className="bg-blue transition-opacity absolute p-[4px] flex bottom-[18px] left-[18px] right-[18px] z-10"
     >
-      {new Array(Math.floor(state.volume * volumeSegments))
-        .fill(0)
-        .map((_, i) => (
-          <div
-            key={i}
-            style={{ width: `calc(100% / ${volumeSegments} - 2px)` }}
-            className="h-full mx-[1px] bg-blue"
-          />
-        ))}
+      <div className="flex-fit flex flex-col border-2 p-2 border-white">
+        <span className="text-white font-system self-stretch text-xl">
+          Volume
+        </span>
+        <div className="flex flex-row h-[32px]">
+          {new Array(Math.floor(volumeSegments)).fill(0).map((_, i) => {
+            const isExpanded = volumeSegments * state.volume > i;
+            return (
+              <div
+                key={i}
+                style={{
+                  width: `calc(100% / ${volumeSegments} - 4px)`,
+                  height: isExpanded ? "100%" : "10%",
+                }}
+                className="mx-[2px] bg-white self-center"
+              />
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
