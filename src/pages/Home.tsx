@@ -1,5 +1,5 @@
 import { appWindow, WebviewWindow } from "@tauri-apps/api/window";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { BorderDetails } from "../components/BorderDetails";
 import { FishTankContainer } from "../components/FishTankContainer";
 import { TitleBar } from "../components/TitleBar";
@@ -96,11 +96,17 @@ const Menu = ({ menuItems }: { menuItems: MenuItem[] }) => {
     <div className="relative">
       <div className="group">
         <button
-          className={"flex-container old-button group-active:bg-darker-grey"}
-          onClick={() => setMenuVisible(true)}
+          className={classNames(
+            "flex-container h-[36px] w-[36px] group-active:bg-darker-grey",
+            menuVisible ? "bg-darker-grey" : "bg-grey"
+          )}
+          onMouseDown={() => setMenuVisible(true)}
         >
           <ProtectedImage
-            className="group-active:invert"
+            className={classNames(
+              "group-active:invert",
+              menuVisible ? "invert" : ""
+            )}
             alt="menu"
             src="/images/menu.png"
           />
@@ -113,7 +119,7 @@ const Menu = ({ menuItems }: { menuItems: MenuItem[] }) => {
             menuItems={menuItems}
           />
           <div
-            onClick={() => setMenuVisible(false)}
+            onMouseDown={() => setMenuVisible(false)}
             className="h-screen w-screen absolute left-[-8px] top-[-8px] bg-[transparent] z-30"
           />
         </>
@@ -129,9 +135,19 @@ const MenuItems = ({
   hideMenu: () => unknown;
   menuItems: MenuItem[];
 }) => {
-  const [actionKeymap, setActionKeymap] = useState<
-    Record<string, () => unknown>
-  >({});
+  const actionKeymap: Record<string, () => unknown> = {};
+
+  for (const item in menuItems) {
+    if (Object.prototype.hasOwnProperty.call(menuItems, item)) {
+      const element = menuItems[item];
+      if (element.keyMap) {
+        actionKeymap[element.keyMap] = () => {
+          hideMenu();
+          element.onClick();
+        };
+      }
+    }
+  }
 
   useKeypresses({
     actionKeymap,
@@ -141,24 +157,6 @@ const MenuItems = ({
     hideMenu();
     menuItems[index].onClick();
   };
-
-  useEffect(() => {
-    const newActionKeymap: typeof actionKeymap = {};
-
-    for (const item in menuItems) {
-      if (Object.prototype.hasOwnProperty.call(menuItems, item)) {
-        const element = menuItems[item];
-        if (element.keyMap) {
-          newActionKeymap[element.keyMap] = () => {
-            hideMenu();
-            element.onClick();
-          };
-        }
-      }
-    }
-
-    setActionKeymap(newActionKeymap);
-  }, [menuItems]);
 
   return (
     <div className="bg-white flex flex-col absolute z-50 translate-y-0 translate-x-0 border-2 border-black min-w-[260px]">

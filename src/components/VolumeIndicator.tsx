@@ -1,17 +1,16 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { AudioContextReact } from "../context/audio_context";
+import { useKeypresses } from "../hooks/useKeypresses";
+import { usePreviousValue } from "../hooks/usePreviousValue";
 
 const volumeSegments = 30;
 
 export const VolumeIndicator = (): React.ReactElement => {
-  const { state } = useContext(AudioContextReact);
+  const { state, actions } = useContext(AudioContextReact);
   const [isVolumeVisible, setVolumeVisible] = useState(false);
-  const previousVolume = useRef(state.volume);
   const volumeVisibilityTimeout = useRef<NodeJS.Timeout>();
 
-  useEffect(() => {
-    if (previousVolume.current === state.volume) return;
-    previousVolume.current = state.volume;
+  const triggerVisibility = () => {
     setVolumeVisible(true);
     volumeVisibilityTimeout.current = setTimeout(
       () => setVolumeVisible(false),
@@ -21,7 +20,16 @@ export const VolumeIndicator = (): React.ReactElement => {
       clearTimeout(
         volumeVisibilityTimeout.current ? volumeVisibilityTimeout.current : 0
       );
-  }, [state.volume]);
+  };
+
+  usePreviousValue(state.volume, triggerVisibility);
+  usePreviousValue(state.isMuted, triggerVisibility);
+
+  useKeypresses({
+    actionKeymap: {
+      KeyM: () => actions.toggleMute(),
+    },
+  });
 
   return (
     <div
@@ -29,9 +37,16 @@ export const VolumeIndicator = (): React.ReactElement => {
       className="bg-blue transition-opacity absolute p-[4px] flex bottom-[18px] left-[18px] right-[18px] z-10"
     >
       <div className="flex-fit flex flex-col border-2 p-2 border-white">
-        <span className="text-white font-system self-stretch text-xl">
-          Volume
-        </span>
+        <div className="flex flex-row items-center justify-between">
+          <span className="pl-[2px] text-white font-system tracking-wide text-[200%]">
+            Volume
+          </span>
+          {state.isMuted ? (
+            <span className="pl-[2px] text-white font-system tracking-wide text-[200%]">
+              <u>M</u>uted
+            </span>
+          ) : null}
+        </div>
         <div className="flex flex-row h-[32px]">
           {new Array(Math.floor(volumeSegments)).fill(0).map((_, i) => {
             const isExpanded = volumeSegments * state.volume > i;
