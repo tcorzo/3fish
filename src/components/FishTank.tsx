@@ -11,6 +11,7 @@ const getRandomBetween = (min: number, max: number): number =>
 const arenaSize: Vector = {
   x: 504,
   y: 336,
+  z: 20,
 };
 
 const fishAttributesToFish = (attr: FishAttributes): Fish => ({
@@ -18,13 +19,16 @@ const fishAttributesToFish = (attr: FishAttributes): Fish => ({
   direction: {
     x: getRandomSign(),
     y: getRandomSign(),
+    z: 0,
   },
   position: {
     x: getRandomBetween(0, arenaSize.x),
     y: getRandomBetween(0, arenaSize.y),
+    z: getRandomBetween(0, arenaSize.z),
   },
   ref: null,
   refImg: null,
+  minDistance: Math.sqrt((attr.width/2)**2 + (attr.height/2)**2)
 });
 
 export const FishTank = ({
@@ -43,12 +47,12 @@ export const FishTank = ({
     const moveFish = (fish: Fish, dt: number) => {
       const maxX = arenaSize.x - fish.width;
       const maxY = arenaSize.y - fish.height;
-
+      
       const clampedDelta = Math.round(Math.min(dt, 100));
-
+      
       fish.position.y += fish.speed.y * clampedDelta * fish.direction.y;
       fish.position.x += fish.speed.x * clampedDelta * fish.direction.x;
-
+      
       if (fish.position.y > maxY) {
         fish.position.y = maxY;
         fish.direction.y = -1;
@@ -65,17 +69,47 @@ export const FishTank = ({
         fish.position.x = maxX;
         fish.direction.x = -1;
       }
+      
+      // Function to calculate the distance between two fishes
+      const calculateDistance = (fish: Fish, otherFish: Fish) => {
+        const dx = fish.position.x - otherFish.position.x;
+        const dy = fish.position.y - otherFish.position.y;
+        return Math.sqrt(dx * dx + dy * dy);
+      };
+      
+      // Check distance from other fishes
+      let isFarEnough = true;
+      fishes.forEach(otherFish => {
+        if (otherFish !== fish) {
+          const distance = calculateDistance(fish, otherFish);
+          const minDistance = fish.minDistance + otherFish.minDistance;
+          if (distance < minDistance) {
+            isFarEnough = false;
+          }
+        }
+      });
+
+      if (isFarEnough) {
+        fish.position.z = getRandomBetween(0, arenaSize.z); // Assign a random z value
+        console.log(fish.position.z);
+      }
+
       if (fish.ref && fish.refImg) {
         fish.ref.style.cssText += `transform: translateX(${fish.position.x}px) translateY(${fish.position.y}px);`;
+
+        fish.ref.style.zIndex = String(fish.position.z);
+        fish.refImg.style.zIndex = String(fish.position.z);
+
         fish.refImg.style.cssText += `transform: scaleX(${fish.direction.x});`;
       }
     };
+    
     const update = (dt: number) => {
       fishes.forEach((fish) => {
         moveFish(fish, dt);
       });
     };
-
+    
     const render: FrameRequestCallback = (_time) => {
       renderRef.current = requestAnimationFrame(render);
       now.current = Date.now();
