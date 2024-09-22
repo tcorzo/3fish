@@ -91,7 +91,6 @@ export const FishTank = ({
 
       if (isFarEnough) {
         fish.position.z = getRandomBetween(0, arenaSize.z); // Assign a random z value
-        console.log(fish.position.z);
       }
 
       if (fish.ref && fish.refImg) {
