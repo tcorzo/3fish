@@ -1,4 +1,4 @@
-export type Vector = { x: number; y: number };
+export type Vector = { x: number; y: number, z: number };
 
 export interface FishAttributes {
   assetUrl: string;
@@ -12,4 +12,5 @@ export interface Fish extends FishAttributes {
   direction: Vector;
   ref: HTMLDivElement | null;
   refImg: HTMLImageElement | null;
+  minDistance: number;
 }
