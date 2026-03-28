@@ -1,55 +1,17 @@
 {
-  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "3fish",
+  "version": "0.1.0",
+  "identifier": "com.snoozed.dev.3fish",
   "build": {
     "beforeBuildCommand": "yarn build",
     "beforeDevCommand": "yarn start",
-    "devPath": "http://localhost:4000",
-    "distDir": "../build"
+    "devUrl": "http://localhost:4000",
+    "frontendDist": "../build"
   },
-  "package": {
-    "productName": "3fish",
-    "version": "0.1.0"
-  },
-  "tauri": {
-    "allowlist": {
-      "all": true
-    },
-    "systemTray": {
-      "iconPath": "icons/icon.png",
-      "iconAsTemplate": true
-    },
-    "bundle": {
-      "active": true,
-      "category": "Entertainment",
-      "copyright": "",
-      "deb": {
-        "depends": []
-      },
-      "externalBin": [],
-      "icon": ["icons/icon.png", "icons/icon.ico"],
-      "identifier": "com.snoozed.dev.3fish",
-      "longDescription": "",
-      "macOS": {
-        "entitlements": null,
-        "exceptionDomain": "",
-        "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
-      },
-      "resources": [],
-      "shortDescription": "",
-      "targets": "all",
-      "windows": {
-        "certificateThumbprint": null,
-        "digestAlgorithm": "sha256",
-        "timestampUrl": ""
-      }
-    },
+  "app": {
     "security": {
       "csp": null
-    },
-    "updater": {
-      "active": false
     },
     "windows": [
       {
@@ -62,5 +24,11 @@
         "url": "/"
       }
     ]
+  },
+  "bundle": {
+    "active": true,
+    "category": "Entertainment",
+    "icon": ["icons/icon.png", "icons/icon.ico"],
+    "targets": "all"
   }
 }

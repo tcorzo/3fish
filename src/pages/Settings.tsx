@@ -1,11 +1,11 @@
-import { appWindow } from "@tauri-apps/api/window";
+import { getCurrentWebviewWindow } from "@tauri-apps/api/webviewWindow";
 import React from "react";
 import { useKeypresses } from "../hooks/useKeypresses";
 
 export const Settings = (): React.ReactElement => {
   useKeypresses({
     actionKeymap: {
-      Escape: () => appWindow.close(),
+      Escape: () => getCurrentWebviewWindow().close(),
     },
   });
 

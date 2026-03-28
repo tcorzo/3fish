@@ -3,79 +3,83 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "System";
-  src: URL("/public/fonts/system.ttf") format("truetype");
+	font-family: 'System';
+	src: URL('/public/fonts/system.ttf') format('truetype');
 }
 
 html,
 body {
-  text-underline-offset: 2px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  -webkit-font-smoothing: none;
+	text-underline-offset: 2px;
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	-webkit-font-smoothing: none;
+	background: #c3c3c3;
+}
+
+#root {
+	width: 100%;
+	height: 100%;
 }
 
 *::selection {
-  background: transparent;
+	background: transparent;
 }
 
 u {
-  letter-spacing: 1px;
-  margin-right: 1px;
+	letter-spacing: 1px;
+	margin-right: 1px;
 }
 
 * {
-  cursor: url("/public/cursors/cursor.cur"), auto;
-  @apply select-none;
+	cursor: url('/public/cursors/cursor.cur'), auto;
+	@apply select-none;
 }
 
 img,
 button {
-  image-rendering: pixelated;
-  @apply select-none;
+	image-rendering: pixelated;
+	@apply select-none;
 }
 
 .old-button {
-  @apply bg-grey h-[36px] w-[36px];
+	@apply bg-grey h-[36px] w-[36px];
 }
 
 .old-button > .shine {
-  clip-path: path("M 0,0 L 0,34 L 2,34 L 2,2 L 34,2 L 34,0 Z");
-  @apply h-[36px] w-[36px] left-0 top-0 z-20 absolute bg-white;
+	clip-path: path('M 0,0 L 0,34 L 2,34 L 2,2 L 34,2 L 34,0 Z');
+	@apply h-[36px] w-[36px] left-0 top-0 z-20 absolute bg-white;
 }
 
 .old-button > .shade {
-  clip-path: path("M 32,0 L 36,0 L 36,36 L 0,36 L 0,32 L 32,32 Z");
-  @apply h-[36px] w-[36px] left-0 top-0 z-10 absolute bg-dark-grey;
+	clip-path: path('M 32,0 L 36,0 L 36,36 L 0,36 L 0,32 L 32,32 Z');
+	@apply h-[36px] w-[36px] left-0 top-0 z-10 absolute bg-dark-grey;
 }
 
 .old-button:active > .shine {
-  @apply bg-[transparent];
+	@apply bg-[transparent];
 }
 
 .old-button:active > .shade {
-  clip-path: path("M 0,0 L 0,36 L 2,36 L 2,2 L 36,2 L 36,0 Z");
+	clip-path: path('M 0,0 L 0,36 L 2,36 L 2,2 L 36,2 L 36,0 Z');
 }
 
 code {
-  font-family: "MS Sans Serif", source-code-pro, Menlo, Monaco, Consolas,
-    "Courier New", monospace;
+	font-family:
+		'MS Sans Serif', source-code-pro, Menlo, Monaco, Consolas,
+		'Courier New', monospace;
 }
 
 .flex-container {
-  @apply relative flex items-center justify-center;
+	@apply relative flex items-center justify-center;
 }
 
 .border-corner {
-  @apply h-[46px] w-[46px] absolute border-2 border-black border-solid box-border;
+	@apply h-[46px] w-[46px] absolute border-2 border-black border-solid box-border;
 }
 
 .flex-fit {
-  @apply flex-1 self-stretch;
+	@apply flex-1 self-stretch;
 }
